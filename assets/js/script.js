@@ -1,7 +1,125 @@
+// Dynamically built time blocks
+//block one
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("9AM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='0'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block two
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("10AM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='1'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block three
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("11AM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='2'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block four
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("12PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='3'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block five
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("1PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='4'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block six
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("2PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='5'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block seven
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("3PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='6'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block eight
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("4PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='7'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//block nine
+var rowEl = $("<div class='row custom-row'></div>");
+var divEl = $("<div class='col-sm-1 hour'></div>");
+divEl.text("5PM");
+rowEl.append(divEl);
+var textareaEl = $("<textarea class='col-sm-10 event'></textarea>");
+rowEl.append(textareaEl);
+var btnEl = $("<button type='submit' class='col-sm-1 saveBtn' data-index='8'></button>");
+var iconEl = $("<i class='fa fa-save'></i>");
+btnEl.append(iconEl);
+rowEl.append(btnEl);
+$('#container').append(rowEl);
+
+//DOM elememts
 var currentDayEl = document.getElementById("currentDay");
 var blockHourEl = document.querySelectorAll(".hour");
 var blockEventEl = document.querySelectorAll(".event");
-var container = document.querySelector(".container");
 
 
 function init() { 
@@ -42,10 +160,8 @@ function init() {
 
 // Display saved events
 function renderSavedEvents() {
-    var eventTime = "";
     var savedEvent = "";
     for (var i = 0; i < blockHourEl.length; i++){
-        eventTime  = blockHourEl[i].textContent.trim();
         savedEvent = localStorage.getItem(blockHourEl[i].textContent.trim());
         if (savedEvent !== null) {
             blockEventEl[i].value = savedEvent;
@@ -57,20 +173,19 @@ function renderSavedEvents() {
 function cleanUplocalStorage() {
     for (var i = 0; i < blockHourEl.length; i++) {
         if (localStorage.getItem(blockHourEl[i].textContent) !== null) {
-            localStorage.getItem(blockHourEl[i].textContent.trim()).removeItem();
+            localStorage.removeItem(blockHourEl[i].textContent.trim());
         }
     }
 }
 
 // Save event if button is clicked
 function buttonClickHandler(event) {
-  
-    var element = event.target;
-    
-    if (element.matches("button")) {
-        var index = element.getAttribute("data-index");
-    } else if (element.matches("i")) {
-        var index = element.parentElement.getAttribute("data-index");
+    var target = $(event.target);
+   
+    if (target.is("button")) {
+        var index = target.attr("data-index");
+    } else if (target.is("i")) {
+        var index = target.parent("button").attr("data-index");
     } else {
         return;
     }
@@ -90,6 +205,6 @@ function buttonClickHandler(event) {
 }
 
 // Attach event listener to the time blocks container 
-container.addEventListener('click', buttonClickHandler);
+$('#container').on('click', '.saveBtn', buttonClickHandler);
 
 init();
